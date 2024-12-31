@@ -18,7 +18,7 @@ namespace dds {
     // Not going to include <algorithm> just for std::max and std::min
     template <typename T>
 #if DDS_CPP_20
-    requires std::is_arithmetic_v<T>
+        requires std::is_arithmetic_v<T>
 #endif
     DDS_NO_DISCARD constexpr const T& max(const T& a, const T& b) noexcept {
         return a > b ? a : b;
@@ -26,7 +26,7 @@ namespace dds {
 
     template <typename T>
 #if DDS_CPP_20
-    requires std::is_arithmetic_v<T>
+        requires std::is_arithmetic_v<T>
 #endif
     DDS_NO_DISCARD constexpr const T& min(const T& a, const T& b) noexcept {
         return a > b ? b : a;
@@ -34,9 +34,9 @@ namespace dds {
 
     template <typename T, typename U>
 #if DDS_CPP_20
-    requires ((std::is_enum_v<T> && std::integral<std::underlying_type_t<T>>) || std::integral<T>) && requires (T t, U u) {
-        { t & u } -> std::same_as<U>;
-    }
+        requires((std::is_enum_v<T> && std::integral<std::underlying_type_t<T>>) || std::integral<T>) && requires(T t, U u) {
+            { t& u } -> std::same_as<U>;
+        }
 #endif
     DDS_NO_DISCARD constexpr bool hasBit(T value, U bit) noexcept {
 #if !DDS_CPP_20
@@ -58,8 +58,8 @@ namespace dds {
             case DXGI_FORMAT_BC3_UNORM_SRGB:
             case DXGI_FORMAT_BC5_UNORM:
             case DXGI_FORMAT_BC5_SNORM:
-			case DXGI_FORMAT_BC7_UNORM:
-			case DXGI_FORMAT_BC7_UNORM_SRGB:
+            case DXGI_FORMAT_BC7_UNORM:
+            case DXGI_FORMAT_BC7_UNORM_SRGB:
                 return 16;
             default:
                 return 0;
@@ -222,26 +222,26 @@ namespace dds {
                 return VK_FORMAT_BC5_UNORM_BLOCK;
             case DXGI_FORMAT_BC5_SNORM:
                 return VK_FORMAT_BC5_SNORM_BLOCK;
-			case DXGI_FORMAT_BC7_UNORM:
-				return VK_FORMAT_BC7_UNORM_BLOCK;
-			case DXGI_FORMAT_BC7_UNORM_SRGB:
-				return VK_FORMAT_BC7_SRGB_BLOCK;
+            case DXGI_FORMAT_BC7_UNORM:
+                return VK_FORMAT_BC7_UNORM_BLOCK;
+            case DXGI_FORMAT_BC7_UNORM_SRGB:
+                return VK_FORMAT_BC7_SRGB_BLOCK;
 
-			// 8-bit wide formats
-			case DXGI_FORMAT_R8_UNORM:
+            // 8-bit wide formats
+            case DXGI_FORMAT_R8_UNORM:
                 return VK_FORMAT_R8_UNORM;
-			case DXGI_FORMAT_R8_UINT:
+            case DXGI_FORMAT_R8_UINT:
                 return VK_FORMAT_R8_UINT;
-			case DXGI_FORMAT_R8_SNORM:
+            case DXGI_FORMAT_R8_SNORM:
                 return VK_FORMAT_R8_SNORM;
-			case DXGI_FORMAT_R8_SINT:
+            case DXGI_FORMAT_R8_SINT:
                 return VK_FORMAT_R8_SINT;
 #if defined(VK_KHR_maintenance5)
-			case DXGI_FORMAT_A8_UNORM:
+            case DXGI_FORMAT_A8_UNORM:
                 return VK_FORMAT_A8_UNORM_KHR;
 #endif
 
-			// 16-bit wide formats
+                // 16-bit wide formats
             case DXGI_FORMAT_R8G8_UNORM:
                 return VK_FORMAT_R8G8_UNORM;
             case DXGI_FORMAT_R8G8_UINT:
@@ -262,14 +262,14 @@ namespace dds {
             case DXGI_FORMAT_R16_SINT:
                 return VK_FORMAT_R16_SINT;
 
-			case DXGI_FORMAT_B5G5R5A1_UNORM:
-				return VK_FORMAT_B5G5R5A1_UNORM_PACK16;
-			case DXGI_FORMAT_B5G6R5_UNORM:
-				return VK_FORMAT_B5G6R5_UNORM_PACK16;
-			case DXGI_FORMAT_B4G4R4A4_UNORM:
-				return VK_FORMAT_B4G4R4A4_UNORM_PACK16;
+            case DXGI_FORMAT_B5G5R5A1_UNORM:
+                return VK_FORMAT_B5G5R5A1_UNORM_PACK16;
+            case DXGI_FORMAT_B5G6R5_UNORM:
+                return VK_FORMAT_B5G6R5_UNORM_PACK16;
+            case DXGI_FORMAT_B4G4R4A4_UNORM:
+                return VK_FORMAT_B4G4R4A4_UNORM_PACK16;
 
-			// 32-bit wide formats
+                // 32-bit wide formats
             case DXGI_FORMAT_R8G8B8A8_UNORM:
                 return VK_FORMAT_R8G8B8A8_UNORM;
             case DXGI_FORMAT_R8G8B8A8_UNORM_SRGB:
@@ -287,32 +287,32 @@ namespace dds {
 
             case DXGI_FORMAT_R16G16_FLOAT:
                 return VK_FORMAT_R16G16_SFLOAT;
-			case DXGI_FORMAT_R16G16_UNORM:
-				return VK_FORMAT_R16G16_UNORM;
-			case DXGI_FORMAT_R16G16_UINT:
-				return VK_FORMAT_R16G16_UINT;
-			case DXGI_FORMAT_R16G16_SNORM:
-				return VK_FORMAT_R16G16_SNORM;
-			case DXGI_FORMAT_R16G16_SINT:
-				return VK_FORMAT_R16G16_SINT;
+            case DXGI_FORMAT_R16G16_UNORM:
+                return VK_FORMAT_R16G16_UNORM;
+            case DXGI_FORMAT_R16G16_UINT:
+                return VK_FORMAT_R16G16_UINT;
+            case DXGI_FORMAT_R16G16_SNORM:
+                return VK_FORMAT_R16G16_SNORM;
+            case DXGI_FORMAT_R16G16_SINT:
+                return VK_FORMAT_R16G16_SINT;
 
-			case DXGI_FORMAT_R32_FLOAT:
-				return VK_FORMAT_R32_SFLOAT;
-			case DXGI_FORMAT_R32_UINT:
-				return VK_FORMAT_R32_UINT;
-			case DXGI_FORMAT_R32_SINT:
-				return VK_FORMAT_R32_SINT;
+            case DXGI_FORMAT_R32_FLOAT:
+                return VK_FORMAT_R32_SFLOAT;
+            case DXGI_FORMAT_R32_UINT:
+                return VK_FORMAT_R32_UINT;
+            case DXGI_FORMAT_R32_SINT:
+                return VK_FORMAT_R32_SINT;
 
-			case DXGI_FORMAT_R9G9B9E5_SHAREDEXP:
-				return VK_FORMAT_E5B9G9R9_UFLOAT_PACK32;
-			case DXGI_FORMAT_R10G10B10A2_UNORM:
-				return VK_FORMAT_A2B10G10R10_UNORM_PACK32;
-			case DXGI_FORMAT_R10G10B10A2_UINT:
-				return VK_FORMAT_A2B10G10R10_UINT_PACK32;
-			case DXGI_FORMAT_R11G11B10_FLOAT:
-				return VK_FORMAT_B10G11R11_UFLOAT_PACK32;
+            case DXGI_FORMAT_R9G9B9E5_SHAREDEXP:
+                return VK_FORMAT_E5B9G9R9_UFLOAT_PACK32;
+            case DXGI_FORMAT_R10G10B10A2_UNORM:
+                return VK_FORMAT_A2B10G10R10_UNORM_PACK32;
+            case DXGI_FORMAT_R10G10B10A2_UINT:
+                return VK_FORMAT_A2B10G10R10_UINT_PACK32;
+            case DXGI_FORMAT_R11G11B10_FLOAT:
+                return VK_FORMAT_B10G11R11_UFLOAT_PACK32;
 
-			// 64-bit wide formats
+                // 64-bit wide formats
             case DXGI_FORMAT_R16G16B16A16_FLOAT:
                 return VK_FORMAT_R16G16B16A16_SFLOAT;
             case DXGI_FORMAT_R16G16B16A16_SINT:
@@ -326,26 +326,26 @@ namespace dds {
 
             case DXGI_FORMAT_R32G32_FLOAT:
                 return VK_FORMAT_R32G32_SFLOAT;
-			case DXGI_FORMAT_R32G32_UINT:
-				return VK_FORMAT_R32G32_UINT;
-			case DXGI_FORMAT_R32G32_SINT:
-				return VK_FORMAT_R32G32_SINT;
+            case DXGI_FORMAT_R32G32_UINT:
+                return VK_FORMAT_R32G32_UINT;
+            case DXGI_FORMAT_R32G32_SINT:
+                return VK_FORMAT_R32G32_SINT;
 
-			// 96-bit wide formats
-			case DXGI_FORMAT_R32G32B32_FLOAT:
-				return VK_FORMAT_R32G32B32_SFLOAT;
-			case DXGI_FORMAT_R32G32B32_UINT:
-				return VK_FORMAT_R32G32B32_UINT;
-			case DXGI_FORMAT_R32G32B32_SINT:
-				return VK_FORMAT_R32G32B32_SINT;
+            // 96-bit wide formats
+            case DXGI_FORMAT_R32G32B32_FLOAT:
+                return VK_FORMAT_R32G32B32_SFLOAT;
+            case DXGI_FORMAT_R32G32B32_UINT:
+                return VK_FORMAT_R32G32B32_UINT;
+            case DXGI_FORMAT_R32G32B32_SINT:
+                return VK_FORMAT_R32G32B32_SINT;
 
-			// 128-bit wide formats
-			case DXGI_FORMAT_R32G32B32A32_FLOAT:
-				return VK_FORMAT_R32G32B32A32_SFLOAT;
-			case DXGI_FORMAT_R32G32B32A32_UINT:
-				return VK_FORMAT_R32G32B32A32_UINT;
-			case DXGI_FORMAT_R32G32B32A32_SINT:
-				return VK_FORMAT_R32G32B32A32_SINT;
+            // 128-bit wide formats
+            case DXGI_FORMAT_R32G32B32A32_FLOAT:
+                return VK_FORMAT_R32G32B32A32_SFLOAT;
+            case DXGI_FORMAT_R32G32B32A32_UINT:
+                return VK_FORMAT_R32G32B32A32_UINT;
+            case DXGI_FORMAT_R32G32B32A32_SINT:
+                return VK_FORMAT_R32G32B32A32_SINT;
 
             case DXGI_FORMAT_R8G8_B8G8_UNORM:
             case DXGI_FORMAT_G8R8_G8B8_UNORM:
@@ -402,31 +402,35 @@ namespace dds {
     }
 #endif // #ifdef VK_VERSION_1_0
 
-	/**
-	 * When using this function, image->data will always be empty and the mipmap span's will reference
-	 * the passed pointer.
-	 */
-	DDS_NO_DISCARD inline ReadResult readImage(std::uint8_t* ptr, std::size_t fileSize, dds::Image* image) {
-        // Read the magic number
-        auto* ddsMagic = reinterpret_cast<uint32_t*>(ptr);
-        ptr += sizeof(uint32_t);
+    /**
+     * When using this function, image->data will always be empty and the mipmap span's will reference
+     * the passed pointer.
+     */
+    DDS_NO_DISCARD inline ReadResult readImage(std::ifstream stream, std::size_t fileSize, dds::Image* image) {
+
+        uint32_t offset = 0;
+        uint32_t ddsMagic = 0;
+        stream.read(reinterpret_cast<char*>(&ddsMagic), sizeof(uint32_t));
+        offset += sizeof(uint32_t);
 
         // Read the header
         if (fileSize < sizeof(dds::FileHeader))
             return dds::ReadResult::Failure;
-        const auto* header = reinterpret_cast<const dds::FileHeader*>(ptr);
-        ptr += sizeof(dds::FileHeader);
+
+        dds::FileHeader header;
+        stream.read(reinterpret_cast<char*>(&header), sizeof(dds::FileHeader));
+        offset += sizeof(dds::FileHeader);
 
         // Validate header. A DWORD (magic number) containing the four character code value 'DDS '
         // (0x20534444).
-        if (*ddsMagic != dds::DdsMagicNumber::DDS)
+        if (ddsMagic != dds::DdsMagicNumber::DDS)
             return dds::ReadResult::Failure;
 
-        const dds::Dx10Header* additionalHeader = nullptr;
-        if (hasBit(header->pixelFormat.flags, PixelFormatFlags::FourCC) &&
-            hasBit(header->pixelFormat.fourCC, static_cast<uint32_t>(DdsMagicNumber::DX10))) {
-            additionalHeader = reinterpret_cast<const dds::Dx10Header*>(ptr);
-            ptr += sizeof(dds::Dx10Header);
+        dds::Dx10Header additionalHeader;
+        if (hasBit(header.pixelFormat.flags, PixelFormatFlags::FourCC) &&
+            hasBit(header.pixelFormat.fourCC, static_cast<uint32_t>(DdsMagicNumber::DX10))) {
+            stream.read(reinterpret_cast<char*>(&additionalHeader), sizeof(dds::Dx10Header));
+            offset += sizeof(dds::Dx10Header);
 
             // "If the DDS_PIXELFORMAT dwFlags is set to DDPF_FOURCC and a dwFourCC is
             // set to "DX10", then the total file size needs to be at least 148
@@ -434,17 +438,17 @@ namespace dds {
             if (fileSize < 148)
                 return dds::ReadResult::InvalidSize;
 
-            image->arraySize = additionalHeader->arraySize;
-            image->format = additionalHeader->dxgiFormat;
-            image->dimension = additionalHeader->resourceDimension;
+            image->arraySize = additionalHeader.arraySize;
+            image->format = additionalHeader.dxgiFormat;
+            image->dimension = additionalHeader.resourceDimension;
         }
 
         // Determine format information
-        auto getFormatInfo = [](const dds::FileHeader* header) -> DXGI_FORMAT {
-            auto& pf = header->pixelFormat;
-			if (hasBit(pf.flags, PixelFormatFlags::FourCC)) {
+        auto getFormatInfo = [](const dds::FileHeader& header) -> DXGI_FORMAT {
+            auto& pf = header.pixelFormat;
+            if (hasBit(pf.flags, PixelFormatFlags::FourCC)) {
                 switch (pf.fourCC) {
-                    // clang-format off
+                        // clang-format off
                     case DXT1:            return DXGI_FORMAT_BC1_UNORM;
                     case DXT2: case DXT3: return DXGI_FORMAT_BC2_UNORM;
                     case DXT4: case DXT5: return DXGI_FORMAT_BC3_UNORM;
@@ -461,41 +465,41 @@ namespace dds {
             }
 
             // TODO: Write more of this bitmask stuff to determine formats.
-			if (hasBit(pf.flags, PixelFormatFlags::RGB)) {
+            if (hasBit(pf.flags, PixelFormatFlags::RGB)) {
                 switch (pf.bitCount) {
                     case 32: {
                         if (pf.rBitMask == 0xFF && pf.gBitMask == 0xFF00 && pf.bBitMask == 0xFF0000 && pf.aBitMask == 0xFF000000)
                             return DXGI_FORMAT_R8G8B8A8_UNORM;
-						if (pf.rBitMask == 0xFF0000 && pf.gBitMask == 0xFF00 && pf.bBitMask == 0xFF && pf.aBitMask == 0xFF000000)
-							return DXGI_FORMAT_B8G8R8A8_UNORM;
+                        if (pf.rBitMask == 0xFF0000 && pf.gBitMask == 0xFF00 && pf.bBitMask == 0xFF && pf.aBitMask == 0xFF000000)
+                            return DXGI_FORMAT_B8G8R8A8_UNORM;
                         if (pf.rBitMask == 0xFFFF && pf.gBitMask == 0xFFFF0000 && pf.bBitMask == 0 && pf.aBitMask == 00)
                             return DXGI_FORMAT_R16G16_UNORM;
-						if (pf.rBitMask == 0x3FF && pf.gBitMask == 0xFFC00 && pf.bBitMask == 0x3FF00000)
-							return DXGI_FORMAT_R10G10B10A2_UNORM;
+                        if (pf.rBitMask == 0x3FF && pf.gBitMask == 0xFFC00 && pf.bBitMask == 0x3FF00000)
+                            return DXGI_FORMAT_R10G10B10A2_UNORM;
                         break;
                     }
                     case 16: {
-						if (pf.rBitMask == 0xFFFF)
-							return DXGI_FORMAT_R16_UNORM;
+                        if (pf.rBitMask == 0xFFFF)
+                            return DXGI_FORMAT_R16_UNORM;
                         if (pf.rBitMask == 0xFF && pf.gBitMask == 0xFF00)
                             return DXGI_FORMAT_R8G8_UNORM;
-						if (pf.rBitMask == 0xF && pf.gBitMask == 0xF0 && pf.bBitMask == 0xF00 && pf.aBitMask == 0xF000)
-							return DXGI_FORMAT_R8G8B8A8_UNORM;
-						if (pf.rBitMask == 0xF00 && pf.gBitMask == 0xF0 && pf.bBitMask == 0xF && pf.aBitMask == 0xF000)
-							return DXGI_FORMAT_B8G8R8A8_UNORM;
-						if (pf.rBitMask == 0xF800 && pf.gBitMask == 0x07E0 && pf.bBitMask == 0x1F && pf.aBitMask == 0) {
-							if (pf.aBitMask == 0)
-								return DXGI_FORMAT_B5G6R5_UNORM;
-							if (pf.aBitMask == 0x8000)
-								return DXGI_FORMAT_B5G5R5A1_UNORM;
-						}
+                        if (pf.rBitMask == 0xF && pf.gBitMask == 0xF0 && pf.bBitMask == 0xF00 && pf.aBitMask == 0xF000)
+                            return DXGI_FORMAT_R8G8B8A8_UNORM;
+                        if (pf.rBitMask == 0xF00 && pf.gBitMask == 0xF0 && pf.bBitMask == 0xF && pf.aBitMask == 0xF000)
+                            return DXGI_FORMAT_B8G8R8A8_UNORM;
+                        if (pf.rBitMask == 0xF800 && pf.gBitMask == 0x07E0 && pf.bBitMask == 0x1F && pf.aBitMask == 0) {
+                            if (pf.aBitMask == 0)
+                                return DXGI_FORMAT_B5G6R5_UNORM;
+                            if (pf.aBitMask == 0x8000)
+                                return DXGI_FORMAT_B5G5R5A1_UNORM;
+                        }
                         break;
                     }
                     case 8: {
                         if (pf.rBitMask == 0xFF)
                             return DXGI_FORMAT_R8_UNORM;
-						if (pf.aBitMask == 0xFF)
-							return DXGI_FORMAT_A8_UNORM;
+                        if (pf.aBitMask == 0xFF)
+                            return DXGI_FORMAT_A8_UNORM;
                         break;
                     }
                 }
@@ -505,15 +509,15 @@ namespace dds {
         };
 
         // We'll always trust the DX10 header.
-        if (additionalHeader == nullptr) {
+        if (additionalHeader.arraySize == 0) {
             image->format = getFormatInfo(header);
             if (image->format == DXGI_FORMAT_UNKNOWN)
                 return ReadResult::UnsupportedFormat;
 
-            if (header->flags & HeaderFlags::Volume || header->caps2 & Caps2Flags::Cubemap) {
+            if (header.flags & HeaderFlags::Volume || header.caps2 & Caps2Flags::Cubemap) {
                 image->dimension = Texture3D;
             } else {
-                image->dimension = header->height > 1 ? Texture2D : Texture1D;
+                image->dimension = header.height > 1 ? Texture2D : Texture1D;
             }
 
             image->arraySize = 1u;
@@ -548,50 +552,50 @@ namespace dds {
         // arraySize is populated with the additional DX10 header.
         uint64_t totalSize = 0;
         for (uint32_t i = 0; i < image->arraySize; ++i) {
-            auto mipmaps = max(header->mipmapCount, 1u);
-            auto width = header->width;
-            auto height = header->height;
+            const auto mipmaps = max(header.mipmapCount, 1u);
+            auto width = header.width;
+            auto height = header.height;
 
-			image->mipmaps.reserve(mipmaps);
+            image->mipmapOffsets.reserve(mipmaps);
             for (uint32_t mip = 0; mip < mipmaps && width != 0; ++mip) {
-                uint32_t size = computeMipmapSize(image->format, width, height);
+                const uint32_t size = computeMipmapSize(image->format, width, height);
                 totalSize += static_cast<uint64_t>(size);
 
-                image->mipmaps.emplace_back(ptr, size);
-                ptr += size;
+                image->mipmapOffsets.emplace_back(offset);
+                offset += size;
 
                 width = max(width / 2, 1u);
                 height = max(height / 2, 1u);
             }
         }
 
-        image->numMips = max(header->mipmapCount, 1u);
-        image->width = header->width;
-        image->height = header->height;
-        image->supportsAlpha = header->hasAlphaFlag();
+        image->numMips = max(header.mipmapCount, 1u);
+        image->width = header.width;
+        image->height = header.height;
+        image->supportsAlpha = header.hasAlphaFlag();
 
         return dds::ReadResult::Success;
     }
 
-	/**
-	 * Reads a file from the given path and parses the image. The entire file contents will be in image->data
-	 * after this function returns successfully. The mipmap spans will point to within image->data.
-	 */
-	#if DDS_CPP_17 && defined(DDS_USE_STD_FILESYSTEM)
+/**
+ * Reads a file from the given path and parses the image. The entire file contents will be in image->data
+ * after this function returns successfully. The mipmap spans will point to within image->data.
+ */
+#if DDS_CPP_17 && defined(DDS_USE_STD_FILESYSTEM)
     DDS_NO_DISCARD inline dds::ReadResult readFile(const fs::path& filepath, dds::Image* image) {
 #else
     DDS_NO_DISCARD inline dds::ReadResult readFile(const std::string& filepath, dds::Image* image) {
 #endif
-		std::ifstream filestream(filepath, std::ios::binary | std::ios::in);
-		if (!filestream.is_open())
-			return dds::ReadResult::Failure;
+        std::ifstream filestream(filepath, std::ios::binary | std::ios::in);
+        if (!filestream.is_open())
+            return dds::ReadResult::Failure;
 
-		// Read the file into a vector.
-		filestream.seekg(0, std::ios::end);
-		auto fileSize = filestream.tellg();
-		image->data.resize(fileSize);
-		filestream.seekg(0);
-		filestream.read(reinterpret_cast<char*>(image->data.data()), fileSize);
-		return readImage(image->data.data(), fileSize, image);
-	}
+        // Read the file into a vector.
+        filestream.seekg(0, std::ios::end);
+        const auto fileSize = filestream.tellg();
+        image->fileSize = fileSize;
+        image->filepath = filepath.string();
+        filestream.seekg(0);
+        return readImage(std::move(filestream), fileSize, image);
+    }
 } // namespace dds
