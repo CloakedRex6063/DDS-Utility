@@ -305,7 +305,7 @@ namespace dds {
         DXGI_FORMAT dxgiFormat;
         ResourceDimension resourceDimension;
         uint32_t miscFlags;
-        uint32_t arraySize;
+        uint32_t arraySize = 0;
         uint32_t miscFlags2;
     };
     static_assert(sizeof(Dx10Header) == 20, "DDS DX10 Header size mismatch");
@@ -316,10 +316,11 @@ namespace dds {
         uint32_t width = 1;
         uint32_t height = 1;
         uint32_t depth = 1;
+        uint32_t fileSize = 0;
         ResourceDimension dimension;
         bool supportsAlpha = false;
         DXGI_FORMAT format;
-        std::vector<uint8_t> data = {};
-        std::vector<dds::span<uint8_t>> mipmaps;
+        std::string filepath;
+        std::vector<uint32_t> mipmapOffsets;
     };
 } // namespace dds
