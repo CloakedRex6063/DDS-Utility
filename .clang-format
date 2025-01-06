@@ -1,23 +1,63 @@
-BasedOnStyle: LLVM
+# Generated from CLion C/C++ Code Style settings
+---
 Language: Cpp
-
+BasedOnStyle: Google
 AccessModifierOffset: -4
-AlignOperands: Align
-AllowAllArgumentsOnNextLine: true
-AllowShortFunctionsOnASingleLine: Empty
-AlwaysBreakTemplateDeclarations: Yes
-ColumnLimit: 140
-Cpp11BracedListStyle: false
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignOperands: true
+AlignTrailingComments: false
+AllowAllArgumentsOnNextLine: false
+PenaltyBreakTemplateDeclaration: 10
+BreakTemplateDeclarations: MultiLine
+PointerAlignment: Left
+BinPackArguments: false
+BinPackParameters: AlwaysOnePerLine
+BraceWrapping:
+  AfterCaseLabel: true
+  AfterClass: true
+  AfterControlStatement: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: true
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeLambdaBody: true
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+BreakBeforeBraces: Custom
+BreakConstructorInitializers: AfterColon
+BreakConstructorInitializersBeforeComma: false
+ColumnLimit: 120
+ContinuationIndentWidth: 8
+IncludeCategories:
+  - Regex: '^<.*'
+    Priority: 1
+  - Regex: '^".*'
+    Priority: 2
+  - Regex: '.*'
+    Priority: 3
+IncludeIsMainRegex: '([-_](test|unittest))?$'
 IndentCaseLabels: true
 IndentWidth: 4
+InsertNewlineAtEOF: true
+MacroBlockBegin: ''
+MacroBlockEnd: ''
+MaxEmptyLinesToKeep: 2
 NamespaceIndentation: All
-PointerAlignment: Left
-SortIncludes: CaseSensitive
-SortUsingDeclarations: true
-SpaceBeforeCpp11BracedList: true
-SpaceBeforeCtorInitializerColon: true
-SpacesBeforeTrailingComments: 1
+SpaceAfterCStyleCast: true
+SpaceAfterTemplateKeyword: false
+SpaceBeforeRangeBasedForLoopColon: false
+SpaceInEmptyParentheses: false
 SpacesInAngles: false
-SpacesInContainerLiterals: true
-Standard: Latest
-UseTab: Never
+SpacesInConditionalStatement: false
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+TabWidth: 4
+...
