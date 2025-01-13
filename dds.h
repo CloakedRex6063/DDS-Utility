@@ -1,6 +1,6 @@
 #ifndef DDS_H
 #define DDS_H
-// Minimal cross-platform DDS texture utility created by Turánszki János for Wicked Engine: https://github.com/turanszkij/WickedEngine
+// Minimal cross-platform DDS texture utility created by Allen Philip inspired from Turánszki János for Wicked Engine: https://github.com/turanszkij/WickedEngine
 // This is not using any includes or memory allocations, and computes relative memory offsets designed for texture streaming
 // Based on DDS specification: https://learn.microsoft.com/en-us/windows/win32/direct3ddds/dx-graphics-dds-pguide#dds-file-layout
 //
@@ -940,7 +940,7 @@ namespace dds
 
 #endif // DDS_H
 
-//Copyright(c) 2024 Turánszki János
+//Copyright(c) 2024 Allen Philip
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files(the "Software"), to deal
