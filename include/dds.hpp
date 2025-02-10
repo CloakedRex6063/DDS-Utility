@@ -1,7 +1,7 @@
 #ifndef DDS_H
 #define DDS_H
 
-// Minimal cross-platform DDS texture utility created by Turánszki János for Wicked Engine:
+// Minimal cross-platform DDS texture utility created by Allen Philip inspired from Turánszki János for Wicked Engine:
 // https://github.com/turanszkij/WickedEngine This is not using any includes or memory allocations, and computes
 // relative memory offsets designed for texture streaming Based on DDS specification:
 // https://learn.microsoft.com/en-us/windows/win32/direct3ddds/dx-graphics-dds-pguide#dds-file-layout
