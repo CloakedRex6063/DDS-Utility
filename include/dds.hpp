@@ -7,15 +7,15 @@
 // https://learn.microsoft.com/en-us/windows/win32/direct3ddds/dx-graphics-dds-pguide#dds-file-layout
 //
 //	How to read DDS textures:
-//		1) Read the whole DDS file, or sizeof(dds::Header) bytes from the beginning of the file
-//		2) Use dds::read_header() to parse the header of the DDS texture
-//		3) from the dds::Header structure that was created by dds::read_header(), you can compute parameters of the
-// texture required
-// for loading 		4) any function of the header returning an offset is relative to the beginning of the file, usable
-// for texture streaming to read only the required data from files 		5) enjoy
+//		1) Use dds::read_header() to parse the header of the DDS texture
+//		2) from the dds::Header structure that was created by dds::read_header(), you can compute parameters of the
+//         texture required for loading 		
+//      3) any function of the header returning an offset is relative to the beginning of the file, usable
+//         for texture streaming to read only the required data from files 		
+//      4) enjoy
 //
 //	Example:
-//		dds::Header header = dds::read_header(filedata, filesize);
+//		dds::Header header = dds::read_header(filePath);
 //		if(header.is_valid())
 //		{
 //			TextureDesc desc;
@@ -1022,27 +1022,22 @@ namespace dds
     };
 
     // Read DDS header from memory
-    //	data:	pointer to memory, this should be the very start of the DDS file (fourcc bytes included)
-    //	size:	size of memory that data points to. It should be sizeof(dds::Header) or larger
     //
     //	returns dds::Header, which you can use to determine relative memory offsets and sizes required to reference
     // certain parts of
     // the texture
-    inline Header ReadHeader(const void* data,
-                             unsigned long long size)
+    inline Header ReadHeader(const std::string_view path)
     {
+        std::ifstream file(path.data(), std::ios::binary);
+        std::vector<char> buffer(sizeof(dds::Header) / sizeof(char));
+        file.read(buffer.data(), buffer.size());
         Header h = {};
         if (data == nullptr) return h;  // invalid pointer
         if (size < sizeof(Header::magic) + sizeof(Header::header)) return h;  // magic and header is a must have
-        h.magic = *(const unsigned*) data;
+        h.magic = *(const unsigned*) buffer.data();
         if (h.magic != fourcc('D', 'D', 'S', ' ')) return h;  // fourcc is invalid
 
         h.header = *(const DDS_HEADER*) ((const char*) data + sizeof(h.magic));
-        if (size >= sizeof(Header) && h.IsDx10())
-        {
-            h.header10 = (*(const Header*) data).header10;
-        }
-
         return h;
     }
 
