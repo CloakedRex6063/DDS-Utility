@@ -985,7 +985,7 @@ namespace dds
 
         // returns the create info for a vulkan image view. image needs to be set manually
         [[nodiscard]]
-        constexpr vk::ImageViewCreateInfo GetVulkanImageViewCreateInfo() const
+        vk::ImageViewCreateInfo GetVulkanImageViewCreateInfo() const
         {
             return vk::ImageViewCreateInfo()
                 .setFormat(GetVulkanFormat())
